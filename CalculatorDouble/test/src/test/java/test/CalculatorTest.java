@@ -31,6 +31,13 @@ public class CalculatorTest {
 		assertEquals(10.3, result, 0);
 	}
 	
+	@Test
+	public void CalculatorAddTest1() {
+		double result = test.add(5.5, 5.55);
+		assertNotNull(result);
+		assertEquals(11.05, result, 0.01);
+	}
+	
 	public void CalculatorAddTest2() {
 		double result = test.add(-5.1, 5);
 		assertNotNull(result);
