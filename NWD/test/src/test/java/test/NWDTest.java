@@ -48,6 +48,13 @@ public class NWDTest {
 		test.nwd(0, 0);
 	}
 	
+	@Test
+	public void NWDForCoprimeIntegers() {
+		int result = test.nwd(13, 15);
+		assertNotNull(result);
+		assertEquals(1 , result);
+	}
+	
 	@After
 	public void after(){
 		test = null;
