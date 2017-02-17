@@ -85,11 +85,41 @@ public class LargestTest
 		assertNotNull(test.max(doubleArray));
 		assertEquals((double)test.max(doubleArray), 2, 0);
 	}
+
+	@Test
+	public void findMaxForCharAsc()
+	{
+		Character[] charArray = { new Character('a'), new Character('b'), new Character('c') };
+		assertNotNull(test.max(charArray));
+		assertEquals((char)test.max(charArray), 'c');
+	}
 	
+	@Test
+	public void findMaxForCharDesc()
+	{
+		Character[] charArray = { new Character('c'), new Character('b'), new Character('a') };
+		assertNotNull(test.max(charArray));
+		assertEquals((char)test.max(charArray), 'c');
+	}
+	
+	@Test
+	public void findMaxForString()
+	{
+		String[] stringArray = { new String("Ala"), new String("ma"), new String("kota") };
+		assertNotNull(test.max(stringArray));
+		assertEquals(test.max(stringArray).toString(), "ma");
+	}
+	
+	@Test
+	public void findMaxForString2()
+	{
+		String[] stringArray = { new String("A"), new String("AA"), new String("AAA") };
+		assertNotNull(test.max(stringArray));
+		assertEquals(test.max(stringArray).toString(), "AAA");
+	}
 	
 	@After
 	public void after(){
 		test = null;
 	}
-
 }
