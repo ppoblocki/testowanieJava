@@ -1,0 +1,10 @@
+1) mvn archetype:generate
+2) czekamy...
+3) wybieramy nr 6 - quick start
+4) podajemy nasz groupID
+5) teraz archetypeID
+6) [projekt utworzony]
+7) teraz dajemy: mvn test
+8) BUILD SUCCESS
+9) export do JAR'a --> mvn package
+10) plik trafia do folderu /target
