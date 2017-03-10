@@ -44,18 +44,27 @@ public class Statek
 	 * 			litera w - do tyłu
 	 * zwraca - true/false jeśli się udało/nie udało
 	 */
-	public boolean plyn(char kierunek)
+	public boolean plyn(String kierunek) throws Exception
 	{
-		if (kierunek == 'N' || kierunek == 'n')
+		if (kierunek == "N" || kierunek == "n")
 		{
-			this.y -= 1;
-			return true;
-		} else if (kierunek == 'S' || kierunek == 's')
+			if (radar(this.x, this.y-1))
+			{
+				this.y -= 1;
+				return true;
+			}
+		} else if (kierunek == "S" || kierunek == "s")
 		{
-			this.y += 1;
-			return true;
-		}else
+			if (radar(this.x, this.y+1))
+			{
+				this.y += 1;
+				return true;
+			}
+		}
+		else
 			return false;
+		
+		return false;
 	}
 	
 	/* obraca statek (w lewo/prawo)
@@ -64,50 +73,50 @@ public class Statek
 	 * 			litera p - w prawo
 	 * zwraca: true/false jeśli się udało lub nie
 	 */
-	public boolean obrot(char kierunek)
+	public boolean obrot(String kierunek)
 	{
 		switch(this.zwrot)
 		{
 		case N:
-			if (kierunek == 'L' || kierunek == 'l')
+			if (kierunek == "L" || kierunek == "l")
 			{
 				this.zwrot = Zwrot.W;
 				return true;
 			}
-			else if (kierunek == 'P' || kierunek == 'p')
+			else if (kierunek == "P" || kierunek == "p")
 			{
 				this.zwrot = Zwrot.E;
 				return true;
 			} 
 		case S:
-			if (kierunek == 'L' || kierunek == 'l')
+			if (kierunek == "L" || kierunek == "l")
 			{
 				this.zwrot = Zwrot.E;
 				return true;
 			}
-			else if (kierunek == 'P' || kierunek == 'p')
+			else if (kierunek == "P" || kierunek == "p")
 			{
 				this.zwrot = Zwrot.W;
 				return true;
 			} 
 		case E:
-			if (kierunek == 'L' || kierunek == 'l')
+			if (kierunek == "L" || kierunek == "l")
 			{
 				this.zwrot = Zwrot.N;
 				return true;
 			}
-			else if (kierunek == 'P' || kierunek == 'p')
+			else if (kierunek == "P" || kierunek == "p")
 			{
 				this.zwrot = Zwrot.S;
 				return true;
 			} 
 		case W:
-			if (kierunek == 'L' || kierunek == 'l')
+			if (kierunek == "L" || kierunek == "l")
 			{
 				this.zwrot = Zwrot.S;
 				return true;
 			}
-			else if (kierunek == 'P' || kierunek == 'p')
+			else if (kierunek == "P" || kierunek == "p")
 			{
 				this.zwrot = Zwrot.N;
 				return true;
@@ -125,13 +134,30 @@ public class Statek
 	 * parametry: string[] rozkazy
 	 * 			tablica rozkazów np [n][n][l][n]
 	 * zwraca: 
-	 * 		0 - sukces
-	 * 		1 - nie da sie
-	 * 		2 - napotkano problem
+	 * 		1 - sukces
+	 * 		0 - problem
 	 */
-	public int wykonaj(String[] rozkazy)
+	public int wykonajSekwencje(String rozkazy) throws Exception
 	{
+		int i = 0;
+		boolean seq = true;
+		String[] sekwencja = rozkazy.split(" ");
 		
-		return 0;
+		while(seq || i != sekwencja.length)
+		{
+			if (sekwencja[i].contains("n w N W"))
+			{
+				seq = plyn(sekwencja[i]);
+			}
+			else if (sekwencja[i].contains("l p L P"))
+			{
+				seq = obrot(sekwencja[i]);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		return 1;
 	}
 }
