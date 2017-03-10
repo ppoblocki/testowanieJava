@@ -3,6 +3,8 @@ package lab4.statek;
 
 public class Statek 
 {
+	// Mapa
+	public Mapa M = new Mapa();
 	// Zwrot statku
 	public Zwrot zwrot;
 	public enum Zwrot {
@@ -23,14 +25,17 @@ public class Statek
 	
 	//====== PORUSZANIE SIE STATKU===============
 	/* sprwadza czy mozna przejsc na dane pole
-	 * parametry: string pole --> litera L, W lub P
+	 * parametry: int x, int y --> wsp X i Y pola
 	 * zwraca: true/false jezeli mozna/nie mozna przejsc
 	 */
-	public boolean radar(String pole)
+	public boolean radar(int x, int y) throws Exception
 	{
-		
-		
-		return false;
+		if (M.mapa[x][y] == "L" || M.mapa[x][y] == "P")
+			return false;
+		else if (M.mapa[x][y] == "W")
+			return true;
+		else
+			throw new Exception("Out of map!");
 	}
 	
 	/* plynie w wybranym kierunku(przód/tył)
@@ -41,8 +46,16 @@ public class Statek
 	 */
 	public boolean plyn(char kierunek)
 	{
-		
-		return false;
+		if (kierunek == 'N' || kierunek == 'n')
+		{
+			this.y -= 1;
+			return true;
+		} else if (kierunek == 'S' || kierunek == 's')
+		{
+			this.y += 1;
+			return true;
+		}else
+			return false;
 	}
 	
 	/* obraca statek (w lewo/prawo)
@@ -53,8 +66,55 @@ public class Statek
 	 */
 	public boolean obrot(char kierunek)
 	{
-		
-		return false;
+		switch(this.zwrot)
+		{
+		case N:
+			if (kierunek == 'L' || kierunek == 'l')
+			{
+				this.zwrot = Zwrot.W;
+				return true;
+			}
+			else if (kierunek == 'P' || kierunek == 'p')
+			{
+				this.zwrot = Zwrot.E;
+				return true;
+			} 
+		case S:
+			if (kierunek == 'L' || kierunek == 'l')
+			{
+				this.zwrot = Zwrot.E;
+				return true;
+			}
+			else if (kierunek == 'P' || kierunek == 'p')
+			{
+				this.zwrot = Zwrot.W;
+				return true;
+			} 
+		case E:
+			if (kierunek == 'L' || kierunek == 'l')
+			{
+				this.zwrot = Zwrot.N;
+				return true;
+			}
+			else if (kierunek == 'P' || kierunek == 'p')
+			{
+				this.zwrot = Zwrot.S;
+				return true;
+			} 
+		case W:
+			if (kierunek == 'L' || kierunek == 'l')
+			{
+				this.zwrot = Zwrot.S;
+				return true;
+			}
+			else if (kierunek == 'P' || kierunek == 'p')
+			{
+				this.zwrot = Zwrot.N;
+				return true;
+			} 
+		default:
+			return false;		
+		}
 	}
 	
 	/* Wykonuje sekwencje ruchów np.
