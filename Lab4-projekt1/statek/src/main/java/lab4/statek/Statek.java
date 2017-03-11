@@ -3,13 +3,9 @@ package lab4.statek;
 
 public class Statek 
 {
-	// Mapa
-	public Mapa M = new Mapa();
-	// Zwrot statku
+	public Mapa M = new Mapa(); // mapa
 	public Zwrot zwrot;
-	public enum Zwrot {
-		N, S, E, W
-	}
+	public enum Zwrot { N, S, E, W } // zwrot statku
 	
 	// Wsp na mapie
 	int x;
@@ -19,8 +15,8 @@ public class Statek
 	public Statek()
 	{
 		zwrot = Zwrot.N;
-		x = 3;
-		y = 6;
+		x = 6;
+		y = 3;
 	}
 	
 	//====== PORUSZANIE SIE STATKU===============
@@ -28,36 +24,39 @@ public class Statek
 	 * parametry: int x, int y --> wsp X i Y pola
 	 * zwraca: true/false jezeli mozna/nie mozna przejsc
 	 */
-	public boolean radar(int x, int y) throws Exception
+	public boolean radar(int x, int y)
 	{
-		if (M.mapa[x][y] == "L" || M.mapa[x][y] == "P")
+		if (x < 0 || x > 9 || y < 0 || y > 9)
 			return false;
-		else if (M.mapa[x][y] == "W")
+
+		if (M.mapa[x][y].equals("L") || M.mapa[x][y].equals("P"))
+			return false;
+		else if (M.mapa[x][y].equals("W"))
 			return true;
 		else
-			throw new Exception("Out of map!");
+			return false;
 	}
 	
 	/* plynie w wybranym kierunku(przód/tył)
-	 * parametry: char kierunek
+	 * parametry: string kierunek
 	 * 			litera n - do przodu
 	 * 			litera w - do tyłu
 	 * zwraca - true/false jeśli się udało/nie udało
 	 */
-	public boolean plyn(String kierunek) throws Exception
+	public boolean plyn(String kierunek)
 	{
-		if (kierunek == "N" || kierunek == "n")
+		if (kierunek.equals("N") || kierunek.equals("n"))
 		{
-			if (radar(this.x, this.y-1))
+			if (radar(this.x-1, this.y))
 			{
-				this.y -= 1;
+				this.x -= 1;
 				return true;
 			}
-		} else if (kierunek == "S" || kierunek == "s")
+		} else if (kierunek.equals("S") || kierunek.equals("s"))
 		{
-			if (radar(this.x, this.y+1))
+			if (radar(this.x+1, this.y))
 			{
-				this.y += 1;
+				this.x += 1;
 				return true;
 			}
 		}
@@ -78,45 +77,45 @@ public class Statek
 		switch(this.zwrot)
 		{
 		case N:
-			if (kierunek == "L" || kierunek == "l")
+			if (kierunek.equals("L") || kierunek.equals("l"))
 			{
 				this.zwrot = Zwrot.W;
 				return true;
 			}
-			else if (kierunek == "P" || kierunek == "p")
+			else if (kierunek.equals("P") || kierunek.equals("p"))
 			{
 				this.zwrot = Zwrot.E;
 				return true;
 			} 
 		case S:
-			if (kierunek == "L" || kierunek == "l")
+			if (kierunek.equals("L") || kierunek.equals("l"))
 			{
 				this.zwrot = Zwrot.E;
 				return true;
 			}
-			else if (kierunek == "P" || kierunek == "p")
+			else if (kierunek.equals("P") || kierunek.equals("p"))
 			{
 				this.zwrot = Zwrot.W;
 				return true;
 			} 
 		case E:
-			if (kierunek == "L" || kierunek == "l")
+			if (kierunek.equals("L") || kierunek.equals("l"))
 			{
 				this.zwrot = Zwrot.N;
 				return true;
 			}
-			else if (kierunek == "P" || kierunek == "p")
+			else if (kierunek.equals("P") || kierunek.equals("p"))
 			{
 				this.zwrot = Zwrot.S;
 				return true;
 			} 
 		case W:
-			if (kierunek == "L" || kierunek == "l")
+			if (kierunek.equals("L") || kierunek.equals("l"))
 			{
 				this.zwrot = Zwrot.S;
 				return true;
 			}
-			else if (kierunek == "P" || kierunek == "p")
+			else if (kierunek.equals("P") || kierunek.equals("p"))
 			{
 				this.zwrot = Zwrot.N;
 				return true;
