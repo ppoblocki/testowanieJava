@@ -35,8 +35,7 @@ public class StatekTest
 	@Test
 	public void StatekTest_zwrot()
 	{
-		Statek s = new Statek();
-		assertEquals(s.zwrot, test.zwrot);
+		assertEquals(Statek.Zwrot.N, test.zwrot);
 	}
 	// endregion
 
@@ -149,5 +148,44 @@ public class StatekTest
 		assertEquals(1, test.x);
 		assertEquals(8, test.y);
 	}
+	// endregion
+
+	// region Statek.obrot()
+	// region From N
+	@Test
+	public void StatekTest_formN_left1()
+	{
+		test.obrot("L");
+		assertEquals(Statek.Zwrot.W, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formN_left2()
+	{
+		test.obrot("l");
+		assertEquals(Statek.Zwrot.W, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formN_right1()
+	{
+		test.obrot("P");
+		assertEquals(Statek.Zwrot.E, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formN_right2()
+	{
+		test.obrot("p");
+		assertEquals(Statek.Zwrot.E, test.zwrot);
+	}
+	// endregion
+
+	// region From E
+	// endregion
+
+	// region From S
+	// endregion
+
+	// region From W
+	// endregion
+
 	// endregion
 }

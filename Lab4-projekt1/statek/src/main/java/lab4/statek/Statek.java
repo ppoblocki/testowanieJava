@@ -67,7 +67,7 @@ public class Statek
 	}
 	
 	/* obraca statek (w lewo/prawo)
-	 * parametry: char kierunek
+	 * parametry: string kierunek
 	 * 			litera l - w lewo
 	 * 			litera p - w prawo
 	 * zwraca: true/false jeśli się udało lub nie
