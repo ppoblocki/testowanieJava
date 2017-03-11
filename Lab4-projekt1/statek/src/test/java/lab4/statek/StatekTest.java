@@ -177,15 +177,103 @@ public class StatekTest
 		assertEquals(Statek.Zwrot.E, test.zwrot);
 	}
 	// endregion
-
 	// region From E
+	@Test
+	public void StatekTest_formE_left1()
+	{
+		test.zwrot = Statek.Zwrot.E;
+		test.obrot("L");
+		assertEquals(Statek.Zwrot.N, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formE_left2()
+	{
+		test.zwrot = Statek.Zwrot.E;
+		test.obrot("l");
+		assertEquals(Statek.Zwrot.N, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formE_right1()
+	{
+		test.zwrot = Statek.Zwrot.E;
+		test.obrot("P");
+		assertEquals(Statek.Zwrot.S, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formE_right2()
+	{
+		test.zwrot = Statek.Zwrot.E;
+		test.obrot("p");
+		assertEquals(Statek.Zwrot.S, test.zwrot);
+	}
 	// endregion
-
 	// region From S
+	@Test
+	public void StatekTest_formS_left1()
+	{
+		test.zwrot = Statek.Zwrot.S;
+		test.obrot("L");
+		assertEquals(Statek.Zwrot.E, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formS_left2()
+	{
+		test.zwrot = Statek.Zwrot.S;
+		test.obrot("l");
+		assertEquals(Statek.Zwrot.E, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formS_right1()
+	{
+		test.zwrot = Statek.Zwrot.S;
+		test.obrot("P");
+		assertEquals(Statek.Zwrot.W, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formS_right2()
+	{
+		test.zwrot = Statek.Zwrot.S;
+		test.obrot("p");
+		assertEquals(Statek.Zwrot.W, test.zwrot);
+	}
 	// endregion
-
 	// region From W
+	@Test
+	public void StatekTest_formW_left1()
+	{
+		test.zwrot = Statek.Zwrot.W;
+		test.obrot("L");
+		assertEquals(Statek.Zwrot.S, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formW_left2()
+	{
+		test.zwrot = Statek.Zwrot.W;
+		test.obrot("l");
+		assertEquals(Statek.Zwrot.S, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formW_right1()
+	{
+		test.zwrot = Statek.Zwrot.W;
+		test.obrot("P");
+		assertEquals(Statek.Zwrot.N, test.zwrot);
+	}
+	@Test
+	public void StatekTest_formW_right2()
+	{
+		test.zwrot = Statek.Zwrot.W;
+		test.obrot("p");
+		assertEquals(Statek.Zwrot.N, test.zwrot);
+	}
+	// endregion
 	// endregion
 
+	// region Statek.wykonajSekwencje()
+	@Test
+	public void StatekTest_wykonajSekwencje()
+	{
+		int result = test.wykonajSekwencje("n");
+	}
 	// endregion
 }

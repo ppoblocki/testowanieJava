@@ -128,35 +128,49 @@ public class Statek
 	/* Wykonuje sekwencje ruchów np.
 	 * n n l n - powoduje przepłynięcie o 2 pola
 	 * do przodu, obrót w lewo i przepłynięcie o 1 pole
-	 * do przodu. Wykonuje sekwencje, przerywa jeżeli
-	 * napotka przeszkodę. 
+	 * do przodu. Przerywa jeżeli napotka przeszkodę.
 	 * parametry: string[] rozkazy
 	 * 			tablica rozkazów np [n][n][l][n]
 	 * zwraca: 
 	 * 		1 - sukces
 	 * 		0 - problem
 	 */
-	public int wykonajSekwencje(String rozkazy) throws Exception
+	public int wykonajSekwencje(String rozkazy)
 	{
 		int i = 0;
 		boolean seq = true;
 		String[] sekwencja = rozkazy.split(" ");
-		
-		while(seq || i != sekwencja.length)
+		int ilosc = sekwencja.length;
+
+		while(seq || i != ilosc)
 		{
-			if (sekwencja[i].contains("n w N W"))
+			if (sekwencja[i].matches("[nwNW]+"))
 			{
 				seq = plyn(sekwencja[i]);
+				System.out.println(seq);
+				if (seq)
+					i += 1;
 			}
-			else if (sekwencja[i].contains("l p L P"))
+			else if (sekwencja[i].matches("[lpLP]+"))
 			{
 				seq = obrot(sekwencja[i]);
+				if (seq)
+					i += 1;
 			}
 			else
 			{
 				return 0;
 			}
 		}
-		return 1;
+		if (i == ilosc)
+			return 1; // Sukces
+		else
+			return 0; // Problem
+	}
+
+	public static void main(String[] args) {
+		Statek s = new Statek();
+		int r = s.wykonajSekwencje("N");
+		System.out.println(r);
 	}
 }
