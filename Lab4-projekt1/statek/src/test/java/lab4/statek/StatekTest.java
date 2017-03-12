@@ -37,6 +37,11 @@ public class StatekTest
 	{
 		assertEquals(Statek.Zwrot.N, test.zwrot);
 	}
+	@Test
+	public void StatekTest_zwrot2()
+	{
+		assertNotNull(test.zwrot);
+	}
 	// endregion
 
 	// region Statek.radar()
@@ -147,9 +152,21 @@ public class StatekTest
 		assertEquals(1, test.x);
 		assertEquals(8, test.y);
 	}
+	@Test
+	public void StatekTest_plny_unsupported_command()
+	{
+		boolean result = test.plyn("x");
+		assertEquals(false, result);
+	}
 	// endregion
 
 	// region Statek.obrot()
+	@Test(expected = NullPointerException.class)
+	public void StatekTest_obrot_zly_zwrot()
+	{
+		test.zwrot = null;
+		test.obrot("L");
+	}
 	// region From N
 	@Test
 	public void StatekTest_formN_left1()
@@ -290,25 +307,25 @@ public class StatekTest
 	@Test
 	public void StatekTest_wykonajSekwencje_dluga_sekwencja_1()
 	{
-		int result = test.wykonajSekwencje("n n l n");
+		int result = test.wykonajSekwencje("n,n,l,n");
 		assertEquals(1, result);
 	}
 	@Test
 	public void StatekTest_wykonajSekwencje_dluga_sekwencja_2()
 	{
-		int result = test.wykonajSekwencje("n n n p n");
+		int result = test.wykonajSekwencje("n,n,n,p,n");
 		assertEquals(1, result);
 	}
 	@Test
 	public void StatekTest_wykonajSekwencje_dluga_sekwencja_3()
 	{
-		int result = test.wykonajSekwencje("L N N");
+		int result = test.wykonajSekwencje("L,N,N");
 		assertEquals(1, result);
 	}
 	@Test
 	public void StatekTest_wykonajSekwencje_dluga_sekwencja_4_ok_but_fail()
 	{
-		int result = test.wykonajSekwencje("n n n n n p n");
+		int result = test.wykonajSekwencje("n,n,n,n,n,p,n");
 		assertEquals(2, result);
 	}
 	// endregion
