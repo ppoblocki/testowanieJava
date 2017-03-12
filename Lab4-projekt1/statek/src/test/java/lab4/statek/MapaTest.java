@@ -10,13 +10,13 @@ public class MapaTest
 	private Mapa test;
 	
 	@Before
-	public void before()
+	public void SetUp()
 	{
 		test = new Mapa();
 	}
 	
 	@After
-	public void after()
+	public void CleanUp()
 	{
 		test = null;
 	}
