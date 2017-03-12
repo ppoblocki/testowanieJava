@@ -40,16 +40,15 @@ public class StatekTest
 	// endregion
 
 	// region Statek.radar()
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void StatekTest_Radar_test1_poza_mape()
 	{
-		boolean result = test.radar(-1, -1);
-		assertEquals(false, result);
+		test.radar(-1, -1);
 	}
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void StatekTest_Radar_test2_poza_mape()
 	{
-		boolean result = test.radar(10, 10);
-		assertEquals(false, result);
+		test.radar(10, 10);
 	}
 	@Test
 	public void StatekTest_Radar_test3_woda()
@@ -271,9 +270,46 @@ public class StatekTest
 
 	// region Statek.wykonajSekwencje()
 	@Test
-	public void StatekTest_wykonajSekwencje()
+	public void StatekTest_wykonajSekwencje_prosta_sekwencja_1()
 	{
 		int result = test.wykonajSekwencje("n");
+		assertEquals(1, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_prosta_sekwencja_2()
+	{
+		int result = test.wykonajSekwencje("l");
+		assertEquals(1, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_prosta_sekwencja_3_fail()
+	{
+		int result = test.wykonajSekwencje("s");
+		assertEquals(0, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_dluga_sekwencja_1()
+	{
+		int result = test.wykonajSekwencje("n n l n");
+		assertEquals(1, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_dluga_sekwencja_2()
+	{
+		int result = test.wykonajSekwencje("n n n p n");
+		assertEquals(1, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_dluga_sekwencja_3()
+	{
+		int result = test.wykonajSekwencje("L N N");
+		assertEquals(1, result);
+	}
+	@Test
+	public void StatekTest_wykonajSekwencje_dluga_sekwencja_4_ok_but_fail()
+	{
+		int result = test.wykonajSekwencje("n n n n n p n");
+		assertEquals(2, result);
 	}
 	// endregion
 }

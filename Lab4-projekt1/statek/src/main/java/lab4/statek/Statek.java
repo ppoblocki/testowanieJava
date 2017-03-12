@@ -27,7 +27,7 @@ public class Statek
 	public boolean radar(int x, int y)
 	{
 		if (x < 0 || x > 9 || y < 0 || y > 9)
-			return false;
+			throw new ArrayIndexOutOfBoundsException();
 
 		if (M.mapa[x][y].equals("L") || M.mapa[x][y].equals("P"))
 			return false;
@@ -134,6 +134,7 @@ public class Statek
 	 * zwraca: 
 	 * 		1 - sukces
 	 * 		0 - problem
+	 * 		2 - wykonano conajmniej 1 krok
 	 */
 	public int wykonajSekwencje(String rozkazy)
 	{
@@ -142,35 +143,24 @@ public class Statek
 		String[] sekwencja = rozkazy.split(" ");
 		int ilosc = sekwencja.length;
 
-		while(seq || i != ilosc)
-		{
-			if (sekwencja[i].matches("[nwNW]+"))
-			{
+		while(seq && i != ilosc) {
+			if (sekwencja[i].matches("[nwNW]+")) {
 				seq = plyn(sekwencja[i]);
-				System.out.println(seq);
 				if (seq)
 					i += 1;
-			}
-			else if (sekwencja[i].matches("[lpLP]+"))
-			{
+			} else if (sekwencja[i].matches("[lpLP]+")) {
 				seq = obrot(sekwencja[i]);
 				if (seq)
 					i += 1;
-			}
-			else
-			{
+			} else {
 				return 0;
 			}
 		}
 		if (i == ilosc)
 			return 1; // Sukces
-		else
+		else if (i == 0)
 			return 0; // Problem
-	}
-
-	public static void main(String[] args) {
-		Statek s = new Statek();
-		int r = s.wykonajSekwencje("N");
-		System.out.println(r);
+		else
+			return 2; // Wykonano conajmniej 1 krok
 	}
 }
