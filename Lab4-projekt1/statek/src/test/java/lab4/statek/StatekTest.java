@@ -1,9 +1,12 @@
 package lab4.statek;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class StatekTest
 {
@@ -58,18 +61,21 @@ public class StatekTest
 	@Test
 	public void StatekTest_Radar_test3_woda()
 	{
+		// Hamcrest
 		boolean result = test.radar(9, 9);
-		assertTrue(result);
+		assertThat(result, is(true));
 	}
 	@Test
 	public void StatekTest_Radar_test4_lad()
 	{
+		// Hamcrest
 		boolean result = test.radar(0, 0);
-		assertFalse(result);
+		assertThat(result, is(false));
 	}
 	@Test
 	public void StatekTest_Radar_test5_pirat()
 	{
+		// JUnit
 		boolean result = test.radar(0, 6);
 		assertFalse(result);
 	}
