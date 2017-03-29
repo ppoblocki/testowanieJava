@@ -1,0 +1,6 @@
+#org.jbehave.core.embedder.StoryManager
+#Mon Mar 27 13:16:02 CEST 2017
+file\:stories/calculator_test_runner.story=0
+threads=1
+total=0
+threadAverage=0
