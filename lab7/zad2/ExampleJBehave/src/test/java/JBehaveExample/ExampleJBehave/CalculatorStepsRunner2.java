@@ -18,12 +18,12 @@ public class CalculatorStepsRunner2{
 	public void givenNewCalculator(){
 		test = new Calculator();
 	}
-	@When("I will multiply number <inputA> and num <inputB>")
+	@When("I will add number <inputA> and num <inputB>")
 	public void whenMultyplying(@Named("inputA") int number, @Named("inputB") int num){
 		 test.setLeft(number);
 		 test.setRight(num);
 	}
-	@Then("after multiplying I will get output <output>")
+	@Then("after adding I will get output <output>")
 	public void thenOutput(@Named("output") int output){
 		 assertEquals(output, test.add(test.getLeft(), test.getRight()));
 	}

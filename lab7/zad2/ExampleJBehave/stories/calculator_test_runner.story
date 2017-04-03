@@ -7,8 +7,8 @@ I want to użyje BDD do kalkulatora
 					 
 Scenario:  Test mnozenia liczb
 Given I have got created calculator
-When I will multiply number <inputA> and num <inputB>
-Then after multiplying I will get output <output>
+When I will add number <inputA> and num <inputB>
+Then after adding I will get output <output>
 
 Examples:     
 |inputA|inputB|output|
