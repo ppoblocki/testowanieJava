@@ -50,12 +50,10 @@ public class GoogleTest {
 		// Przejdz do każdego linku
 		try{
 			for(i = 0; i < liczba; i++){
-				linki = driver.findElements(By.tagName("a"));
-				if (linki.get(i).getAttribute("href").contains("google"))
-					driver.navigate().to(linki.get(i).getAttribute("href"));
-				else
-					continue;
-
+			    if (linki.get(i).getAttribute("href").contains("google"))
+			   	    driver.navigate().to(linki.get(i).getAttribute("href"));
+			    else
+				continue;
 			}
 		}
 		catch(Exception ex){
